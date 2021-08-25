@@ -1,7 +1,7 @@
 # PokerHandCompare
 Josh Moscoe 8-25-2021
 
-Manifest technologies coding Kata
+Manifest technologies coding Kata- http://codingdojo.org/kata/PokerHands/
 
 
 For this problem I figured the simplest and most elegant solution involved sorting the values of each hand by size. This made checking what the hand was a lot easier. For example for a straight all I need to do is start at i=1 and check to see if int[i] == int[i-1]+1. It also helped a lot with the pairing functions. If a number occurs many times in a sorted array then they will appear next to each other, so instead of iterating over the whole hand to look for a pair I only needed to look at a hand’s neighbours. So for Four of a Kind, I looked at the 4th card and checked if the 3 previous values were the same, and then did the same for the 5th value. Similarly, for the 3 of a Kind I started from the 3rd value and only had to check two more possibilities.
