@@ -9,6 +9,7 @@ class Hand {
 	int strength=0;
 	int strongest=0; // this is the high card in a straight or flush, the 3 of a kind in a full house, the higher of two pairs, or the value of the pair, 3 or 4 of a kind
 	int weaker=0;    // this is the pair in a full house or the weaker of two pairs in the two pair hand
+	// Might be worth explaining what a kicker is here, or in the documentation (if you didn't already - might have missed it)
 	int kicker =0; // the first kicker will only be needed for two pair and for a pair
 	int kicker1 = 0;
 	int kicker2 =0; // three kickers are only needed for pairs, for high card the sorted array itself will be used
@@ -87,11 +88,11 @@ class Hand {
 	
 	boolean checkPair() {
 		int[] kickers = {0,0,0,0,0,};
-		for(int i=1; i<5; i++) {
+		for(int i = 1; i<5; i++) {
 			if(sorted[i] == sorted[i-1]) {
-				strongest= sorted[i]; 
-				for(int j=0; j<5 ; j++) {
-					if(j!=i && j!=i-1) {
+				strongest = sorted[i]; 
+				for(int j = 0; j < 5 ; j++) {
+					if(j != i && j != i-1) {
 						kickers[j] = sorted[j]; // to find the kicker, iterates through the sorted list to save all of the values that aren't of the pair in the kickers array
 												// then the array is sorted and they are saved as kickers 0, 1 and 2, 0 being the highest
 					}
@@ -132,7 +133,7 @@ class Hand {
 	
 	
 	boolean checkThree() { // no kicker is needed because two players cannot get the same 3 of a kind
-		for(int i=2;i< 5; i++) {
+		for(int i = 2; i < 5; i++) {
 			if(sorted[i] == sorted[i-1] && sorted[i] == sorted[i-2]) {
 				strongest = sorted[i];
 				return true;
@@ -146,23 +147,26 @@ class Hand {
 	boolean checkStraight() {	
 		
 		if(sorted[4] == 14 && sorted[0] == 2 && sorted[1] ==3 && sorted[2] == 4 && sorted[3] ==5) {
-			strongest= sorted[3];
+			strongest = sorted[3];
 			return true;
 		} // because aces can be low for a straight checks for that specific case
 		
-		for(int i=1;i<5;i++) {
+		for(int i = 1; i < 5;i++) {
 			if(sorted[i-1] != sorted[i]-1) {
 				return false; // starts at 1 and checks to see if the previous value is exactly 1 smaller than the current one, if it's ever not true then returns false
 			}
 		}
-		strongest=sorted[4];
+		strongest = sorted[4];
 		return true;
 		
 	} // checks if all of the values form a straight 
 	
 	boolean checkFlush() {
 		
-		if(cards[0].getSuit().equals(cards[1].getSuit()) && cards[0].getSuit().equals(cards[2].getSuit()) && cards[0].getSuit().equals(cards[3].getSuit()) && cards[0].getSuit().equals(cards[4].getSuit())) {
+		if(cards[0].getSuit().equals(cards[1].getSuit()) 
+		   && cards[0].getSuit().equals(cards[2].getSuit())
+		   && cards[0].getSuit().equals(cards[3].getSuit())
+		   && cards[0].getSuit().equals(cards[4].getSuit())) {
 			strongest= sorted[4];
 			return true;
 		}
@@ -188,7 +192,7 @@ class Hand {
 	  // number matches either the first or second pair
 	
 	boolean checkFour() { // no kicker is needed because 2 players cannot get the same 4 of a kind
-		for(int i=3; i<5; i++) {
+		for(int i = 3; i < 5; i++) {
 			if(sorted[i] == sorted[i-1] && sorted[i] == sorted[i-2] && sorted[i] == sorted[i-3]) {
 				strongest = sorted[i];
 				return true;
