@@ -9,6 +9,11 @@ class Card {
 		String v = input.substring(0,1);
 		String s = input.substring(1,2);
 		suit = s;
+		    /*
+		    This is definitely a clever way of determining whether or not it's a face card. I've never seen a try/catch used
+		    for anything other than error paths, though.. I'm not sure if it's worth changing it or not, but there's a chance that
+		    they'll give you shit for using the catch block to handle a valid path.
+		    */
 		try { // This checks if the value is a face card or not, if the value is less than ten this sets the value equal to the string (as an int).
 			value = Integer.parseInt(v);
 			name = v;
