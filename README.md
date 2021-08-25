@@ -1,5 +1,6 @@
 # PokerHandCompare
 Josh Moscoe 8-25-2021
+
 Manifest technologies coding Kata
 
 
